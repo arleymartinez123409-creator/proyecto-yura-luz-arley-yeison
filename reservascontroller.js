@@ -24,9 +24,16 @@ function crear(req, res) {
 
   // Validar cruce de horarios
   const cruce = data.obtenerTodas().some(r => hayCruce(r, nueva));
-  if (cruce) {
-    return res.status(400).json({ error: 'El espacio ya está reservado en ese horario' });
-  }
+if (
+!nueva.espacio ||
+!nueva.fecha ||
+!nueva.horaInicio ||
+!nueva.horaFin
+) {
+return res.status(400).json({
+error: 'Todos los campos son obligatorios'
+});
+}
 
   const creada = data.crear(nueva);
   res.status(201).json(creada);
