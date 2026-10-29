@@ -10,23 +10,44 @@ function obtenerPorId(id) {
 }
 
 function crear(datos) {
-  const nuevaReserva = { id: siguienteId++, ...datos };
+  const nuevaReserva = {
+    id: siguienteId++,
+    ...datos
+  };
+
   reservas.push(nuevaReserva);
+
   return nuevaReserva;
 }
 
 function actualizar(id, datos) {
   const reserva = obtenerPorId(id);
-  if (!reserva) return null;
+
+  if (!reserva) {
+    return null;
+  }
+
   Object.assign(reserva, datos);
+
   return reserva;
 }
 
 function eliminar(id) {
   const index = reservas.findIndex(r => r.id === id);
-  if (index === -1) return false;
+
+  if (index === -1) {
+    return false;
+  }
+
   reservas.splice(index, 1);
+
   return true;
 }
 
-module.exports = { obtenerTodas, obtenerPorId, crear, actualizar, eliminar };
+module.exports = {
+  obtenerTodas,
+  obtenerPorId,
+  crear,
+  actualizar,
+  eliminar
+};
