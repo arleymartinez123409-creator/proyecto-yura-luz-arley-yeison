@@ -1,42 +1,25 @@
-const data = require('../data/tareas');
+const data = require('../data/tareasData');
 
-function listar(req, res) {
-  res.json(data.obtenerTodas());
-}
-
-function obtener(req, res) {
-  const id = parseInt(req.params.id);
-  const tarea = data.obtenerPorId(id);
-  if (!tarea) return res.status(404).json({ error: 'Tarea no encontrada' });
-  res.json(tarea);
-}
-
-function crear(req, res) {
-  const { titulo, responsable } = req.body;
-  if (!titulo || !responsable) {
-    return res.status(400).json({ error: 'titulo y responsable son obligatorios' });
+module.exports = {
+  listar: (req, res) => res.json(data.obtenerTodas()),
+  obtener: (req, res) => {
+    const tarea = data.obtenerPorId(parseInt(req.params.id));
+    return tarea ? res.json(tarea) : res.status(404).json({ error: 'Tarea no encontrada' });
+  },
+  crear: (req, res) => {
+    const { titulo, responsable, descripcion } = req.body;
+    if (!titulo || !responsable) {
+      return res.status(400).json({ error: 'Título y responsable son obligatorios' });
+    }
+    const nueva = data.crear({ titulo, descripcion: descripcion || '', responsable, estado: 'pendiente' });
+    res.status(201).json(nueva);
+  },
+  actualizar: (req, res) => {
+    const actualizada = data.actualizar(parseInt(req.params.id), req.body);
+    return actualizada ? res.json(actualizada) : res.status(404).json({ error: 'Tarea no encontrada' });
+  },
+  eliminar: (req, res) => {
+    const exito = data.eliminar(parseInt(req.params.id));
+    return exito ? res.status(204).send() : res.status(404).json({ error: 'Tarea no encontrada' });
   }
-  const nueva = data.crear({
-    titulo,
-    descripcion: req.body.descripcion || '',
-    responsable,
-    estado: 'pendiente'
-  });
-  res.status(201).json(nueva);
-}
-
-function actualizar(req, res) {
-  const id = parseInt(req.params.id);
-  const actualizada = data.actualizar(id, req.body);
-  if (!actualizada) return res.status(404).json({ error: 'Tarea no encontrada' });
-  res.json(actualizada);
-}
-
-function eliminar(req, res) {
-  const id = parseInt(req.params.id);
-  const exito = data.eliminar(id);
-  if (!exito) return res.status(404).json({ error: 'Tarea no encontrada' });
-  res.status(204).send();
-}
-
-module.exports = { listar, obtener, crear, actualizar, eliminar };
+};
