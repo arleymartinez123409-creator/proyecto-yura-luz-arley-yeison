@@ -6,7 +6,7 @@ stackblitz: https://stackblitz.com/edit/stackblitz-starters-cr3pvias?file=src%2F
 
 github: https://github.com/arleymartinez123409-creator/proyecto-yura-luz-arley-yeison/blob/main/README.md 
 
-render: https://dashboard.render.com/web/srv-dbml5i67bikc73bbnvcg/settings
+render: https://proyecto-yura-luz-arley-yeison-1.onrender.com
 
 integrantes:
 1. Arley 
