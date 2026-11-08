@@ -3,7 +3,9 @@
 
 link:
 stackblitz: https://stackblitz.com/edit/stackblitz-starters-cr3pvias?file=src%2Fcontrollers%2FespaciosController.js,src%2Fdata%2Freservas.js,src%2Fdata%2Fespacios.js,src%2Fcontrollers%2FreservasController.js,src%2Froutes%2Fespacios.js,src%2Froutes%2Freservas.js,Pruevas.md,Equipo.md,README.md,backlog.md
+
 github: https://github.com/arleymartinez123409-creator/proyecto-yura-luz-arley-yeison/blob/main/README.md 
+
 render: https://dashboard.render.com/web/srv-dbml5i67bikc73bbnvcg/settings
 
 integrantes:
